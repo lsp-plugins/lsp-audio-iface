@@ -24,7 +24,7 @@
 
 #include <lsp-plug.in/audio/iface/version.h>
 
-#include <lsp-plug.in/common/types.h>
+#include <lsp-plug.in/audio/iface/types.h>
 #include <lsp-plug.in/common/status.h>
 
 namespace lsp
@@ -40,9 +40,15 @@ namespace lsp
              * Connect to the audio backend
              * @param self ponter to backend_t structure
              * @param params connection parameters, NULL for default options.
+             * @param callbacks connection callbacks.
+             * @param user_data user data passed to callbacks.
              * @return status of operation
              */
-            status_t    (* connect)(backend_t *self, const char *params);
+            status_t    (* connect)(
+                backend_t *self,
+                const connection_params_t *params,
+                const callbacks_t *callbacks,
+                void *user_data);
 
             /**
              * Disconnect the audio backend

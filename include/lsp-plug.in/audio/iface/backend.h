@@ -80,6 +80,26 @@ namespace lsp
             status_t        (* unregister_port)(backend_t *self, port_id_t port_id);
 
             /**
+             * Estimate connection between two ports.
+             *
+             * @param self pointer to backend_t structure
+             * @param source the name of the source output port
+             * @param destination the name of the destination input port
+             * @return status of operation, STATUS_ALREADY_BOUND if already connected.
+             */
+            status_t        (* connect_ports)(backend_t *self, const char *source, const char *destination);
+
+            /**
+             * Break connection between two ports.
+             *
+             * @param self pointer to backend_t structure
+             * @param source the name of the source output port
+             * @param destination the name of the destination input port
+             * @return status of operation, STATUS_ALREADY_BOUND if already connected.
+             */
+            status_t        (* disconnect_ports)(backend_t *self, const char *source, const char *destination);
+
+            /**
              * Set latency for the data port.
              * @param self pointer to backend_t structure
              * @param port_id unique port identifier

@@ -64,7 +64,7 @@ namespace lsp
             void            (* destroy)(backend_t *self);
 
             /**
-             * Create data port
+             * Register data port.
              * @param self ponter to backend_t structure
              * @param id unique string port identifier
              * @param flags port flags @see audio::port_flags_t
@@ -73,14 +73,14 @@ namespace lsp
             port_id_t       (* register_port)(backend_t *self, const char *id, uint32_t flags);
 
             /**
-             * Destroy data port
+             * Unregister data port.
              * @param self pointer to backend_t structure
              * @param port audio port instance
              */
             status_t        (* unregister_port)(backend_t *self, port_id_t port_id);
 
             /**
-             * Set latency for the port
+             * Set latency for the data port.
              * @param self pointer to backend_t structure
              * @param port_id unique port identifier
              * @param latency port latency in samples
@@ -97,7 +97,7 @@ namespace lsp
             size_t          (* audio_buffer_count)(backend_t *self, port_id_t port_id);
 
             /**
-             * Get raw audio buffer associated with the port
+             * Get raw audio buffer associated with the port.
              * @param self pointer to backend_t structure
              * @param port_id unique port identifier
              * @param index buffer index

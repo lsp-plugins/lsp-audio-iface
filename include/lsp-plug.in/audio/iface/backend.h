@@ -51,6 +51,19 @@ namespace lsp
                 void *user_data);
 
             /**
+             * Disconnect the audio backend
+             * @param self ponter to backend_t structure
+             * @return status of operation
+             */
+            status_t        (* disconnect)(backend_t *self);
+
+            /**
+             * Destroy backend and free memory allocated by the backend_t structure.
+             * @param self pointer to backend_t structure
+             */
+            void            (* destroy)(backend_t *self);
+
+            /**
              * Create data port
              * @param self ponter to backend_t structure
              * @param id unique string port identifier
@@ -67,6 +80,15 @@ namespace lsp
             status_t        (* unregister_port)(backend_t *self, port_id_t port_id);
 
             /**
+             * Set latency for the port
+             * @param self pointer to backend_t structure
+             * @param port_id unique port identifier
+             * @param latency port latency in samples
+             * @return status of operation
+             */
+            status_t        (* set_port_latency)(backend_t *self, port_id_t port_id, uint32_t latency);
+
+            /**
              * Get number of audio buffers for the port. Input audio buffers may contain more than one
              * buffers that should be mixed together.
              * @param self pointer to backend_t structure
@@ -81,29 +103,8 @@ namespace lsp
              * @param index buffer index
              * @return pointer to data or NULL if buffer is empty or not present
              */
-            float          *(* audio_buffer)(backend_t *self, port_id_t port_id, size_t index);
+            float          *(* get_audio_buffer)(backend_t *self, port_id_t port_id, size_t index);
 
-            /**
-             * Set latency for the port
-             * @param self pointer to backend_t structure
-             * @param port_id unique port identifier
-             * @param latency port latency in samples
-             * @return status of operation
-             */
-            status_t        (* set_latency)(backend_t *self, port_id_t port_id, uint32_t latency);
-
-            /**
-             * Disconnect the audio backend
-             * @param self ponter to backend_t structure
-             * @return status of operation
-             */
-            status_t        (* disconnect)(backend_t *self);
-
-            /**
-             * Destroy backend and free memory allocated by the backend_t structure.
-             * @param self pointer to backend_t structure
-             */
-            void            (* destroy)(backend_t *self);
 
         } backend_t;
     } /* namespace audio */

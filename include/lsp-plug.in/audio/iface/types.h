@@ -131,6 +131,24 @@ namespace lsp
 
         } io_position_t;
 
+        typedef struct midi_event_t
+        {
+            /**
+             * Midi offset within the buffer
+             */
+            uint32_t        timestamp;
+
+            /**
+             * Size of MIDI event
+             */
+            uint32_t        size;
+
+            /**
+             * Event data
+             */
+            uint8_t        *data;
+        } midi_event_t;
+
         /**
          * Backend connection parameters
          */
@@ -181,9 +199,10 @@ namespace lsp
              * Issued when the backend is required to perform audio processing
              * @param user_data user data
              * @param position current processing position
+             * @param frames number of frames to process
              * @return status of operation
              */
-            status_t        (* on_process)(void *user_data, const io_position_t *position);
+            status_t        (* on_process)(void *user_data, const io_position_t *position, uint32_t frames);
 
             /**
              * Issued when audio processing has been deactivated

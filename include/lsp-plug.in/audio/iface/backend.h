@@ -91,13 +91,17 @@ namespace lsp
             /**
              * Get number of audio buffers for the port. Input audio buffers may contain more than one
              * buffers that should be mixed together.
+             * @note This method may be called only inside of the on_process() callback.
+             *
              * @param self pointer to backend_t structure
              * @param port_id unique port identifier
              */
-            size_t          (* audio_buffer_count)(backend_t *self, port_id_t port_id);
+            size_t          (* audio_buffers_count)(backend_t *self, port_id_t port_id);
 
             /**
              * Get raw audio buffer associated with the port.
+             * @note This method may be called only inside of the on_process() callback.
+             *
              * @param self pointer to backend_t structure
              * @param port_id unique port identifier
              * @param index buffer index
@@ -105,6 +109,38 @@ namespace lsp
              */
             float          *(* get_audio_buffer)(backend_t *self, port_id_t port_id, size_t index);
 
+            /**
+             * Get number of MIDI events for the MIDI port.
+             * @note This method may be called only inside of the on_process() callback.
+             *
+             * @param self pointer to backend_t structure
+             * @param port_id unique port identifier
+             */
+            size_t          (* midi_events_count)(backend_t *self, port_id_t port_id);
+
+            /**
+             * Get MIDI event from input MIDI port. Retreived MIDI events are sorted chronologically.
+             * @note This method may be called only inside of the on_process() callback.
+             *
+             * @param self pointer to backend_t structure
+             * @param port_id unique port identifier
+             * @param event the pointer to store MIDI event data
+             * @param index index of the requested MIDI event
+             * @return status of operation, STATUS_NO_DATA if there is no such MIDI event
+             */
+            status_t        (* read_midi_event)(backend_t *self, port_id_t port_id, midi_event_t *event, uint32_t index);
+
+            /**
+             * Submit new MIDI event to output MIDI port. Submitted MIDI events SHOULD be sorted chronologically.
+             * @note This method may be called only inside of the on_process() callback.
+             *
+             * @param self pointer to backend_t structure
+             * @param port_id unique port identifier
+             * @param timestamp MIDI event timestamp
+             * @param size size of the MIDI event
+             * @return pointer to the memory for serializing the MIDI event or NULL on error
+             */
+            uint8_t        *(* write_midi_event)(backend_t *self, port_id_t port_id, uint32_t timestamp, uint32_t size);
 
         } backend_t;
     } /* namespace audio */

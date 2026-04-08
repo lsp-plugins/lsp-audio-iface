@@ -32,6 +32,27 @@ namespace lsp
     namespace audio
     {
         /**
+         * Port flags
+         */
+        enum port_flags_t
+        {
+            // Port direction
+            PORT_DIR_IN     = 0,
+            PORT_DIR_OUT    = 1 << 0,
+            PORT_DIR_MASK   = 1 << 0,
+
+            // Port type mask
+            PORT_TYPE_AUDIO = 0 << 1,
+            PORT_TYPE_MIDI  = 1 << 1,
+            PORT_TYPE_MASK  = 1 << 1
+        };
+
+        /**
+         * Port identifier
+         */
+        typedef int32_t port_id_t;
+
+        /**
          * Input/Output parameters
          */
         typedef struct io_parameters_t

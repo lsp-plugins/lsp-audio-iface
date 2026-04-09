@@ -51,6 +51,14 @@ namespace lsp
                 void *user_data);
 
             /**
+             * Set overall latency for the backend.
+             * @param self pointer to backend_t structure
+             * @param latency port latency in samples
+             * @return status of operation
+             */
+            status_t        (* set_latency)(backend_t *self, uint32_t latency);
+
+            /**
              * Disconnect the audio backend
              * @param self ponter to backend_t structure
              * @return status of operation
@@ -78,6 +86,14 @@ namespace lsp
              * @param port audio port instance
              */
             status_t        (* unregister_port)(backend_t *self, port_id_t port_id);
+
+            /**
+             * Get system name of the port
+             * @param self pointer to backend_t structure
+             * @param port_id port identifier
+             * @return system name of the port or NULL
+             */
+            const char     *(* port_system_name)(audio::backend_t *self, port_id_t port_id);
 
             /**
              * Estimate connection between two ports.

@@ -137,6 +137,9 @@ namespace lsp
             /**
              * Get raw audio buffer associated with the port.
              * @note This method may be called only inside of the on_process() callback.
+             * This method can return NULL if buffer is empty (filled with zeros) or not
+             * present. NULL can only be returned if audio_buffers_count returns value of
+             * less than two.
              *
              * @param self pointer to backend_t structure
              * @param port_id unique port identifier

@@ -36,6 +36,7 @@ namespace lsp
             const char         *id;             // Enumeration unique identifier
             const char         *display;        // Display name
             const char         *lc_key;         // Localized display name key
+            uint32_t            priority;       // Priority of the backend (the greater the more preferred)
         } backend_metadata_t;
 
     } /* namespace audio */

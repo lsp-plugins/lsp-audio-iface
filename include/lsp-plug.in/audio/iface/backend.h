@@ -88,15 +88,6 @@ namespace lsp
             status_t        (* unregister_port)(backend_t *self, port_id_t port_id);
 
             /**
-             * Set latency for the data port.
-             * @param self pointer to backend_t structure
-             * @param port_id unique port identifier
-             * @param latency port latency in samples
-             * @return status of operation
-             */
-            status_t        (* set_port_latency)(backend_t *self, port_id_t port_id, uint32_t latency);
-
-            /**
              * Get system name of the port
              * @param self pointer to backend_t structure
              * @param port_id port identifier

@@ -54,7 +54,7 @@ namespace lsp
              * Set overall latency for the backend.
              * @param self pointer to backend_t structure
              * @param latency port latency in samples
-             * @return status of operation
+             * @return status of operation, STATUS_RETRY if need to retry the call.
              */
             status_t        (* set_latency)(backend_t *self, uint32_t latency);
 

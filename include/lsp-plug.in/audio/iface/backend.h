@@ -140,25 +140,16 @@ namespace lsp
             float          *(* get_audio_buffer)(backend_t *self, port_id_t port_id, size_t index);
 
             /**
-             * Get number of MIDI events for the MIDI port.
-             * @note This method may be called only inside of the on_process() callback.
-             *
-             * @param self pointer to backend_t structure
-             * @param port_id unique port identifier
-             */
-            size_t          (* midi_events_count)(backend_t *self, port_id_t port_id);
-
-            /**
-             * Get MIDI event from input MIDI port. Retreived MIDI events are sorted chronologically.
+             * Get MIDI event from input MIDI port.
              * @note This method may be called only inside of the on_process() callback.
              *
              * @param self pointer to backend_t structure
              * @param port_id unique port identifier
              * @param event the pointer to store MIDI event data
-             * @param index index of the requested MIDI event
+             * @param index the pointer to store iterator's index. Should be set to 0 on first call.
              * @return status of operation, STATUS_NO_DATA if there is no such MIDI event
              */
-            status_t        (* read_midi_event)(backend_t *self, port_id_t port_id, midi_event_t *event, uint32_t index);
+            status_t        (* read_midi_event)(backend_t *self, port_id_t port_id, midi_event_t *event, uint32_t *index);
 
             /**
              * Submit new MIDI event to output MIDI port. Submitted MIDI events SHOULD be sorted chronologically.

@@ -44,13 +44,16 @@ namespace lsp
             // Port type mask
             PORT_TYPE_AUDIO     = 0 << 1,
             PORT_TYPE_MIDI      = 1 << 1,
-            PORT_TYPE_MASK      = 1 << 1,
+            PORT_TYPE_MIDI2     = 2 << 1,
+            PORT_TYPE_MASK      = 0x3 << 1,
 
             // Predefined port settings
             PORT_AUDIO_IN       = PORT_TYPE_AUDIO | PORT_DIR_IN,
             PORT_AUDIO_OUT      = PORT_TYPE_AUDIO | PORT_DIR_OUT,
-            PORT_MIDI_IN        = PORT_TYPE_MIDI | PORT_DIR_IN,
-            PORT_MIDI_OUT       = PORT_TYPE_MIDI | PORT_DIR_OUT,
+            PORT_MIDI_IN        = PORT_TYPE_MIDI  | PORT_DIR_IN,
+            PORT_MIDI_OUT       = PORT_TYPE_MIDI  | PORT_DIR_OUT,
+            PORT_MIDI2_IN       = PORT_TYPE_MIDI2 | PORT_DIR_IN,
+            PORT_MIDI2_OUT      = PORT_TYPE_MIDI2 | PORT_DIR_OUT,
 
             PORT_TYPE_UNKNOWN   = ~int(0)
         };

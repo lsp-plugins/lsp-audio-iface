@@ -23,4 +23,4 @@ ARTIFACT_ID                 = LSP_AUDIO_IFACE
 ARTIFACT_NAME               = lsp-audio-iface
 ARTIFACT_DESC               = Audio backend interface
 ARTIFACT_HEADERS            = lsp-plug.in
-ARTIFACT_VERSION            = 1.0.1-devel
+ARTIFACT_VERSION            = 1.0.1

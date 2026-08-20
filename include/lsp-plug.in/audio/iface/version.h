@@ -24,7 +24,7 @@
 
 #define LSP_AUDIO_IFACE_MAJOR           1
 #define LSP_AUDIO_IFACE_MINOR           0
-#define LSP_AUDIO_IFACE_MICRO           2
+#define LSP_AUDIO_IFACE_MICRO           3
 
 #if defined(LSP_AUDIO_IFACE_PUBLISHER)
     #define LSP_AUDIO_IFACE_PUBLIC          LSP_EXPORT_MODIFIER
